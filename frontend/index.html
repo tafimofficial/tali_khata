@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- PWA Meta -->
+    <title>টালিখাতা</title>
+    <meta name="application-name" content="টালিখাতা" />
+    <meta name="description" content="আপনার ডিজিটাল টালি খাতা - লেনদেন ব্যবস্থাপনা" />
+    <meta name="theme-color" content="#ff0000" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- Apple iOS PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="টালিখাতা" />
+
+    <!-- Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Icons (SVG inline fallback + PNG) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <!-- Register Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('SW registered:', reg.scope))
+            .catch(err => console.warn('SW registration failed:', err));
+        });
+      }
+    </script>
+  </body>
+</html>
